@@ -10,6 +10,7 @@
 // subtraction = subt
 // Note: All math operations will be: a (operation) b
 
+// SOLUTION 1
 function add(a, b) {
   return a + b;
 }

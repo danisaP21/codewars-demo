@@ -6,6 +6,7 @@
 //   0 -->     0  (  0 * 5¹)
 //  -3 -->   -15  ( -3 * 5¹)
 
+// SOLUTION 1
 function multiply(n) {
   let num = String(n).split("");
   let numLength = num.length;

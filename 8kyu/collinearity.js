@@ -30,6 +30,7 @@
 // (0,0,1,0) ➞ true
 // (5,7,0,0) ➞ true
 
+// SOLUTION 1
 function collinear(x1, y1, x2, y2) {
   if (x1 === x2 && y1 === y2) {
     return true;
