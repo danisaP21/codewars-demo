@@ -11,6 +11,7 @@
 // checkExam(["a", "a", "b", "c"], ["a", "a", "b", "c"]) → 16
 // checkExam(["b", "c", "b", "a"], ["",  "a", "a", "c"]) → 0
 
+// SOLUTION 1
 function checkExam(array1, array2) {
   let sumCorrect = 0;
   let sumFalse = 0;
