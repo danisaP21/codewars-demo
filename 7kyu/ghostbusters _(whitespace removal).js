@@ -19,5 +19,3 @@ function hasSpaceAndLowercaseAfter(building) {
 
   return `You just wanted my autograph didn't you?`;
 }
-
-console.log(hasSpaceAndLowercaseAfter("Suite "));

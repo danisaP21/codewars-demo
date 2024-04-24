@@ -18,5 +18,3 @@ function prefix(arr) {
 
   return prefixSum;
 }
-
-console.log(prefix([1, 2, 3, 4, 5]));

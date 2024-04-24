@@ -28,5 +28,3 @@ function checkExam(array1, array2) {
 
   return total > 0 ? total : 0;
 }
-
-console.log(checkExam(["a", "a", "b", "b"], ["a", "c", "b", "d"]));

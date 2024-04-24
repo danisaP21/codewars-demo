@@ -33,5 +33,3 @@ function dinner(n) {
 
   return `Chris ate ${sum} flies, Tom ate ${sumTom} flies and Cat ate ${sumCat} flies`;
 }
-
-console.log(dinner(8));
