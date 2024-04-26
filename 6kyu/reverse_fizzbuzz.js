@@ -17,6 +17,43 @@
 // SOLUTION 1
 function reverse(str) {
   let newStr = str.split(" ");
+  let filterNewStr = newStr.flatMap((x) =>
+    x === "Fizz" || x === "Buzz" || x === "FizzBuzz" ? x : Number(x)
+  );
+  console.log(filterNewStr);
+  let finalArr = [];
+
+  if (filterNewStr.filter((o) => typeof o === "number")) {
+    for (let i = 0; i < filterNewStr.length; i++) {
+      if (
+        typeof filterNewStr[i] === "string" &&
+        typeof filterNewStr[i + 1] === "number"
+      ) {
+        filterNewStr[i] = filterNewStr[i + 1] - 1;
+        finalArr.push(filterNewStr[i]);
+      } else if (
+        typeof filterNewStr[i] === "string" &&
+        typeof filterNewStr[i - 1] === "number"
+      ) {
+        filterNewStr[i] = filterNewStr[i - 1] + 1;
+        finalArr.push(filterNewStr[i]);
+      } else {
+        finalArr.push(filterNewStr[i]);
+      }
+    }
+  } else {
+  }
+  return finalArr;
 }
 
-console.log(reverse("Fizz Buzz"));
+// function reverse(str) {
+//   let newStr = str.split(" ");
+//   let filterNewStr = newStr.flatMap((x) =>
+//     x === "Fizz" || x === "Buzz" || x === "FizzBuzz" ? x : Number(x)
+//   );
+
+//   let finalArr = [];
+//   let curEl = 1;
+// }
+
+console.log(reverse("Fizz Buzz")); // Output: [9, 10]
