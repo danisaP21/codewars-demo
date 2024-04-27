@@ -15,45 +15,76 @@
 // reverse_fizzbuzz("Fizz Buzz")              -->  [9, 10]
 
 // SOLUTION 1
-function reverse(str) {
-  let newStr = str.split(" ");
-  let filterNewStr = newStr.flatMap((x) =>
-    x === "Fizz" || x === "Buzz" || x === "FizzBuzz" ? x : Number(x)
-  );
-  console.log(filterNewStr);
-  let finalArr = [];
-
-  if (filterNewStr.filter((o) => typeof o === "number")) {
-    for (let i = 0; i < filterNewStr.length; i++) {
-      if (
-        typeof filterNewStr[i] === "string" &&
-        typeof filterNewStr[i + 1] === "number"
-      ) {
-        filterNewStr[i] = filterNewStr[i + 1] - 1;
-        finalArr.push(filterNewStr[i]);
-      } else if (
-        typeof filterNewStr[i] === "string" &&
-        typeof filterNewStr[i - 1] === "number"
-      ) {
-        filterNewStr[i] = filterNewStr[i - 1] + 1;
-        finalArr.push(filterNewStr[i]);
-      } else {
-        finalArr.push(filterNewStr[i]);
-      }
-    }
-  } else {
-  }
-  return finalArr;
-}
-
 // function reverse(str) {
 //   let newStr = str.split(" ");
-//   let filterNewStr = newStr.flatMap((x) =>
-//     x === "Fizz" || x === "Buzz" || x === "FizzBuzz" ? x : Number(x)
+//   let filterNewStr = newStr.flatMap((o) =>
+//     o === "Fizz" || o === "Buzz" || o === "FizzBuzz" ? o : Number(o)
 //   );
-
+//   console.log(filterNewStr);
 //   let finalArr = [];
-//   let curEl = 1;
+
+//   function ifNumber(filterNewStr) {
+//     for (let i = 0; i < filterNewStr.length; i++) {
+//       if (
+//         typeof filterNewStr[i] === "string" &&
+//         typeof filterNewStr[i + 1] === "number"
+//       ) {
+//         filterNewStr[i] = filterNewStr[i + 1] - 1;
+//         finalArr.push(filterNewStr[i]);
+//       } else if (
+//         typeof filterNewStr[i] === "string" &&
+//         typeof filterNewStr[i - 1] === "number"
+//       ) {
+//         filterNewStr[i] = filterNewStr[i - 1] + 1;
+//         finalArr.push(filterNewStr[i]);
+//       } else {
+//         finalArr.push(filterNewStr[i]);
+//       }
+//     }
+//   }
+
+//   if (filterNewStr.filter((h) => typeof h === "number")) {
+//     ifNumber(filterNewStr);
+//   } else {
+//     ifNotNumber(str);
+//   }
+//   return finalArr;
 // }
 
-console.log(reverse("Fizz Buzz")); // Output: [9, 10]
+function reverseFizzBuzz(s) {
+  const words = s.split(" ");
+  console.log(words);
+  const n = words.length;
+  console.log(n);
+
+  let count = 0;
+  let sequenceStart = true;
+  for (let i = 1; i <= 100; i++) {
+    if (count === n) break;
+
+    if (
+      (i % 3 === 0 && i % 5 === 0 && words[count] === "FizzBuzz") ||
+      (i % 3 === 0 && words[count] === "Fizz") ||
+      (i % 5 === 0 && words[count] === "Buzz") ||
+      (i % 3 !== 0 && i % 5 !== 0 && i.toString() === words[count])
+    ) {
+      if (sequenceStart === true) {
+        sequenceStart = i - n + 2;
+      }
+      count++;
+    } else {
+      count = 0;
+      sequenceStart = true;
+    }
+  }
+
+  const result = [];
+  for (let i = sequenceStart; i < sequenceStart + n; i++) {
+    result.push(i);
+  }
+
+  return result;
+}
+
+// Test case
+console.log(reverseFizzBuzz("Fizz Buzz")); // Output: [9, 10]
