@@ -17,33 +17,29 @@
 // SOLUTION 1
 function reverseFizzBuzz(s) {
   function checkForNumber(s) {
-    let newStr = s.split(" ");
-    let filterNewStr = newStr.flatMap((o) =>
-      o === "Fizz" || o === "Buzz" || o === "FizzBuzz" ? o : Number(o)
-    );
-
+    let newStr = s
+      .split(" ")
+      .flatMap((o) =>
+        o === "Fizz" || o === "Buzz" || o === "FizzBuzz" ? o : Number(o)
+      );
     let finalArr = [];
-
-    for (let i = 0; i < filterNewStr.length; i++) {
-      if (
-        typeof filterNewStr[i] === "string" &&
-        typeof filterNewStr[i + 1] === "number"
-      ) {
-        filterNewStr[i] = filterNewStr[i + 1] - 1;
-        finalArr.push(filterNewStr[i]);
+    for (let i = 0; i < newStr.length; i++) {
+      if (typeof newStr[i] !== "number" && typeof newStr[i + 1] === "number") {
+        newStr[i] = newStr[i + 1] - 1;
+        finalArr.push(newStr[i]);
       } else if (
-        typeof filterNewStr[i] === "string" &&
-        typeof filterNewStr[i - 1] === "number"
+        typeof newStr[i] !== "number" &&
+        typeof newStr[i - 1] === "number"
       ) {
-        filterNewStr[i] = filterNewStr[i - 1] + 1;
-        finalArr.push(filterNewStr[i]);
+        newStr[i] = newStr[i - 1] + 1;
+        finalArr.push(newStr[i]);
       } else {
-        finalArr.push(filterNewStr[i]);
+        finalArr.push(newStr[i]);
       }
     }
+
     return finalArr;
   }
-
   function checkForString(s) {
     const words = s.split(" ");
     const n = words.length;
@@ -60,8 +56,10 @@ function reverseFizzBuzz(s) {
       ) {
         if (sequenceStart === true) {
           sequenceStart = i;
+          console.log(count);
         }
         count++;
+        console.log(count);
       } else {
         count = 0;
         sequenceStart = true;
@@ -89,41 +87,4 @@ function reverseFizzBuzz(s) {
   }
 }
 
-console.log(reverseFizzBuzz("Fizz 76570 76571 76572 76573 76574")); // Output: [9, 10]
-
-// function reverseFizzBuzz(s) {
-//   const words = s.split(" ");
-//   console.log(words);
-//   const n = words.length;
-//   console.log(n);
-
-//   let count = 0;
-//   let sequenceStart = true;
-//   for (let i = 1; i <= 100; i++) {
-//     if (count === n) break;
-
-//     if (
-//       (i % 3 === 0 && i % 5 === 0 && words[count] === "FizzBuzz") ||
-//       (i % 3 === 0 && words[count] === "Fizz") ||
-//       (i % 5 === 0 && words[count] === "Buzz") ||
-//       (i % 3 !== 0 && i % 5 !== 0 && i.toString() === words[count])
-//     ) {
-//       if (sequenceStart === true) {
-//         sequenceStart = i - n + 2;
-//       }
-//       count++;
-//     } else {
-//       count = 0;
-//       sequenceStart = true;
-//     }
-//   }
-
-//   const result = [];
-//   for (let i = sequenceStart; i < sequenceStart + n; i++) {
-//     result.push(i);
-//   }
-
-//   return result;
-// }
-
-// Test case
+console.log(reverseFizzBuzz("1 2 Fizz 4 Buzz")); // Output: [9, 10]
