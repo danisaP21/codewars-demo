@@ -23,23 +23,29 @@ function reverseFizzBuzz(s) {
         o === "Fizz" || o === "Buzz" || o === "FizzBuzz" ? o : Number(o)
       );
     let finalArr = [];
+
     for (let i = 0; i < newStr.length; i++) {
-      if (typeof newStr[i] !== "number" && typeof newStr[i + 1] === "number") {
-        newStr[i] = newStr[i + 1] - 1;
-        finalArr.push(newStr[i]);
-      } else if (
-        typeof newStr[i] !== "number" &&
-        typeof newStr[i - 1] === "number"
-      ) {
-        newStr[i] = newStr[i - 1] + 1;
-        finalArr.push(newStr[i]);
+      if (typeof newStr[i] === "string") {
+        if (typeof newStr[i + 1] === "number") {
+          newStr[i] = newStr[i + 1] - 1;
+          finalArr.push(newStr[i]);
+        } else {
+          finalArr.push(Number(newStr[i]));
+        }
+      } else if (typeof newStr[i + 1] === "string") {
+        if (typeof newStr[i] === "number") {
+          newStr[i + 1] = newStr[i] + 1;
+          finalArr.push(newStr[i]);
+        } else {
+          finalArr.push(Number(newStr[i]));
+        }
       } else {
         finalArr.push(newStr[i]);
       }
     }
-
     return finalArr;
   }
+
   function checkForString(s) {
     const words = s.split(" ");
     const n = words.length;
@@ -86,5 +92,3 @@ function reverseFizzBuzz(s) {
     return checkForString(s);
   }
 }
-
-console.log(reverseFizzBuzz("1 2 Fizz 4 Buzz")); // Output: [9, 10]
