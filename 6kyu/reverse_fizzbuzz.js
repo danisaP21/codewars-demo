@@ -17,32 +17,7 @@
 // SOLUTION 1
 function reverseFizzBuzz(s) {
   function checkForNumber(s) {
-    let newStr = s
-      .split(" ")
-      .flatMap((o) =>
-        o === "Fizz" || o === "Buzz" || o === "FizzBuzz" ? o : Number(o)
-      );
-    let finalArr = [];
-
-    for (let i = 0; i < newStr.length; i++) {
-      if (typeof newStr[i] === "string") {
-        if (typeof newStr[i + 1] === "number") {
-          newStr[i] = newStr[i + 1] - 1;
-          finalArr.push(newStr[i]);
-        } else {
-          finalArr.push(Number(newStr[i]));
-        }
-      } else if (typeof newStr[i + 1] === "string") {
-        if (typeof newStr[i] === "number") {
-          newStr[i + 1] = newStr[i] + 1;
-          finalArr.push(newStr[i]);
-        } else {
-          finalArr.push(Number(newStr[i]));
-        }
-      } else {
-        finalArr.push(newStr[i]);
-      }
-    }
+  
     return finalArr;
   }
 
