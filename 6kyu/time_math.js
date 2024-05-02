@@ -5,17 +5,32 @@
 
 // SOLUTION 1
 function timeMath(time1, op, time2) {
-  let timeOne = time1.split(":").map(Number);
-  let timeTwo = time2.split(":").map(Number);
+  function toSeconds(time) {
+    let timeArr = time.split(":").map(Number);
+    let res = timeArr[0] * 3600 + timeArr[1] * 60 + timeArr[2];
+    return res;
+  }
 
-  let hour, minute, seconds;
+  function toHour(seconds) {
+    let hour = seconds / 3600;
+    let fullHour = Math.floor(hour);
+    let minutes = (hour - fullHour) * 60;
+    let fullMinutes = Math.floor(minutes);
+    let fullSeconds = Math.round((minutes - fullMinutes) * 60);
+    let res = `${fullHour}:${fullMinutes}:${fullSeconds}`;
+    return res.toString();
+  }
+
   if (op === "+") {
-    hour = (timeOne[0] + timeTwo[0]).toString().padStart(2, "0");
-    minute = (timeOne[1] + timeTwo[1]).toString().padStart(2, "0");
-    seconds = (timeOne[2] + timeTwo[2]).toString().padStart(2, "0");
-    return `${hour}:${minute}:${seconds}`;
+    return toHour(toSeconds(time1) + toSeconds(time2));
   } else if (op === "-") {
+    let time1Res = toSeconds(time1);
+    let time2Res = toSeconds(time2);
+    let timeSub = time1Res - time2Res;
+    let res = timeSub < 0 ? timeSub + 86400 : timeSub;
+    res = toHour(res);
+    return res.toString();
   }
 }
 
-console.log(timeMath("01:24:31", "+", "02:16:05"));
+console.log(timeMath("13:48:52", "-", "13:47:53"));
