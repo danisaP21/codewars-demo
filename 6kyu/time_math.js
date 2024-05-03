@@ -13,24 +13,28 @@ function timeMath(time1, op, time2) {
 
   function toHour(seconds) {
     let hour = seconds / 3600;
-    let fullHour = Math.floor(hour);
+    let fullHour = Math.floor(hour).toString().padStart(2, "0");
     let minutes = (hour - fullHour) * 60;
-    let fullMinutes = Math.floor(minutes);
-    let fullSeconds = Math.round((minutes - fullMinutes) * 60);
+    let fullMinutes = Math.floor(minutes).toString().padStart(2, "0");
+    let fullSeconds = Math.round((minutes - fullMinutes) * 60)
+      .toString()
+      .padStart(2, "0");
     let res = `${fullHour}:${fullMinutes}:${fullSeconds}`;
-    return res.toString();
+    return res;
   }
 
   if (op === "+") {
-    return toHour(toSeconds(time1) + toSeconds(time2));
+    let res =
+      toSeconds(time1) + toSeconds(time2) > 86400
+        ? toHour(toSeconds(time1) + toSeconds(time2) - 86400)
+        : toHour(toSeconds(time1) + toSeconds(time2));
+    return res === "24:00:00" ? "00:00:00" : res;
   } else if (op === "-") {
     let time1Res = toSeconds(time1);
     let time2Res = toSeconds(time2);
     let timeSub = time1Res - time2Res;
     let res = timeSub < 0 ? timeSub + 86400 : timeSub;
     res = toHour(res);
-    return res.toString();
+    return res;
   }
 }
-
-console.log(timeMath("13:48:52", "-", "13:47:53"));

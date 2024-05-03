@@ -1,1 +1,1 @@
-86400 - time2Res
+(time1) + toSeconds(time2));
